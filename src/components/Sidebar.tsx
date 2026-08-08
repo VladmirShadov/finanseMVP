@@ -25,25 +25,25 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onE
   const menuItems = [
     {
       id: 'income' as ViewType,
-      label: 'Przychody',
+      label: 'Income',
       icon: ArrowUpRight,
       color: 'text-slate-400 dark:text-zinc-400 dark:text-zinc-400 dark:text-zinc-300',
     },
     {
       id: 'expense' as ViewType,
-      label: 'Wydatki',
+      label: 'Expenses',
       icon: ArrowDownRight,
       color: 'text-slate-400 dark:text-zinc-400 dark:text-zinc-400 dark:text-zinc-300',
     },
     {
       id: 'asset' as ViewType,
-      label: 'Zasoby',
+      label: 'Assets',
       icon: Coins,
       color: 'text-slate-400 dark:text-zinc-400 dark:text-zinc-400 dark:text-zinc-300',
     },
     {
       id: 'analytics' as ViewType,
-      label: 'Podsumowanie',
+      label: 'Analytics',
       icon: ChartIcon,
       color: 'text-slate-400 dark:text-zinc-400 dark:text-zinc-400 dark:text-zinc-300',
     },
@@ -67,7 +67,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onE
         <button
           onClick={toggle}
           className="p-2 rounded-lg text-slate-400 dark:text-zinc-400 hover:text-slate-600 dark:hover:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
-          title="Przełącz motyw"
+          title="Toggle theme"
         >
           {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
         </button>
@@ -101,7 +101,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onE
             className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-150 cursor-pointer whitespace-nowrap border-0 text-slate-500 dark:text-zinc-400 hover:bg-slate-50 dark:hover:bg-zinc-800/50 hover:text-slate-800 dark:hover:text-zinc-200"
           >
             <LogOut className="w-4.5 h-4.5 shrink-0 text-slate-400 dark:text-zinc-400" />
-            <span>Wyjście</span>
+            <span>Exit</span>
           </button>
         </div>
       </nav>

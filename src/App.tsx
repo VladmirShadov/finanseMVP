@@ -91,20 +91,20 @@ function DashboardContent() {
   const getPolishMonthName = (ym: string) => {
     const [year, month] = ym.split('-');
     const date = new Date(Number(year), Number(month) - 1, 1);
-    const formatted = date.toLocaleDateString('pl-PL', { month: 'long', year: 'numeric' });
+    const formatted = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
     return formatted.charAt(0).toUpperCase() + formatted.slice(1);
   };
 
   if (isExited) {
     return (
       <div className="min-h-screen bg-slate-50 dark:bg-black flex flex-col items-center justify-center p-4">
-        <h1 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">Wylogowano pomyślnie</h1>
-        <p className="text-slate-500 dark:text-zinc-400 mb-6">Aplikacja została zamknięta.</p>
+        <h1 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">Logged out successfully</h1>
+        <p className="text-slate-500 dark:text-zinc-400 mb-6">Application has been closed.</p>
         <button
           onClick={() => setIsExited(false)}
           className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-colors cursor-pointer"
         >
-          Wróć do aplikacji
+          Return to application
         </button>
       </div>
     );
@@ -130,15 +130,15 @@ function DashboardContent() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-100 dark:border-zinc-800">
               <div>
                 <span className="text-[10px] font-bold tracking-wider text-indigo-600 uppercase">
-                  {currentView === 'income' ? 'Przychody' : currentView === 'expense' ? 'Wydatki' : 'Zasoby'}
+                  {currentView === 'income' ? 'Income' : currentView === 'expense' ? 'Expenses' : 'Assets'}
                 </span>
                 <h2 className="text-xl font-bold text-slate-800 dark:text-white tracking-tight mt-0.5">
-                  {currentView === 'income' ? 'Zarządzanie przychodami' : currentView === 'expense' ? 'Zarządzanie wydatkami' : 'Aktualny stan majątku'}
+                  {currentView === 'income' ? 'Income Management' : currentView === 'expense' ? 'Expense Management' : 'Current Assets'}
                 </h2>
                 <p className="text-xs text-slate-400 dark:text-zinc-400 mt-0.5">
                   {currentView === 'asset' 
-                    ? 'Wprowadź i zarządzaj wartością swoich dóbr, inwestycji i oszczędności' 
-                    : 'Filtruj, rejestruj oraz analizuj ruchy finansowe według kategorii'
+                    ? 'Enter and manage the value of your goods, investments, and savings' 
+                    : 'Filter, register and analyze financial movements by category'
                   }
                 </p>
               </div>
@@ -149,7 +149,7 @@ function DashboardContent() {
                   <button
                     onClick={prevMonth}
                     className="p-2 rounded-lg hover:bg-white dark:hover:bg-zinc-900 dark:hover:border-zinc-700 text-slate-600 dark:text-zinc-300 hover:text-slate-800 hover:dark:text-white hover:shadow-xs transition-all cursor-pointer"
-                    title="Poprzedni miesiąc"
+                    title="Previous month"
                   >
                     &larr;
                   </button>
@@ -160,7 +160,7 @@ function DashboardContent() {
                   <button
                     onClick={nextMonth}
                     className="p-2 rounded-lg hover:bg-white dark:hover:bg-zinc-900 dark:hover:border-zinc-700 text-slate-600 dark:text-zinc-300 hover:text-slate-800 hover:dark:text-white hover:shadow-xs transition-all cursor-pointer"
-                    title="Następny miesiąc"
+                    title="Next month"
                   >
                     &rarr;
                   </button>
@@ -189,10 +189,10 @@ function DashboardContent() {
                 <div>
                   <p className="text-[10px] font-bold text-slate-400 dark:text-zinc-400 uppercase tracking-wider">
                     {currentView === 'income' 
-                      ? 'Suma przychodów w wybranym miesiącu' 
+                      ? 'Total income in selected month' 
                       : currentView === 'expense' 
-                        ? 'Suma wydatków w wybranym miesiącu' 
-                        : 'Łączna wartość zarejestrowanych zasobów'
+                        ? 'Total expenses in selected month' 
+                        : 'Total value of registered assets'
                     }
                   </p>
                   <p className="text-2xl font-black text-slate-800 dark:text-white tracking-tight mt-0.5">
@@ -207,7 +207,7 @@ function DashboardContent() {
                     <Info className="w-5 h-5 text-slate-400 dark:text-zinc-400 group-hover:text-blue-500 transition-colors" />
                   </div>
                   <div className="absolute bottom-full right-0 mb-2 w-64 bg-slate-800 dark:bg-slate-700 text-white text-xs font-medium p-3 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 shadow-lg pointer-events-none">
-                    Zasoby mają charakter bezterminowy i pokazują wyłącznie aktualny, nadpisywany stan środków.
+                    Assets are indefinite and only show the current, overwritten state of funds.
                     <div className="absolute top-full right-3 -mt-1 w-2.5 h-2.5 bg-slate-800 dark:bg-slate-700 rotate-45"></div>
                   </div>
                 </div>
@@ -217,7 +217,7 @@ function DashboardContent() {
             {/* Categories Grid */}
             <div className="space-y-4">
               <h3 className="text-sm font-bold text-slate-500 dark:text-zinc-300 tracking-wider uppercase">
-                Kategorie kafelkowe ({activeCategories.length})
+                Tile categories ({activeCategories.length})
               </h3>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
@@ -246,8 +246,8 @@ function DashboardContent() {
                     <Plus className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-slate-700 dark:text-zinc-200">Nowa kategoria</p>
-                    <p className="text-xs text-slate-400 dark:text-zinc-400 mt-0.5">Dodaj unikalny kafelek</p>
+                    <p className="text-sm font-bold text-slate-700 dark:text-zinc-200">New category</p>
+                    <p className="text-xs text-slate-400 dark:text-zinc-400 mt-0.5">Add a unique tile</p>
                   </div>
                 </button>
               </div>
@@ -257,7 +257,7 @@ function DashboardContent() {
             {currentView !== 'asset' && (
               <div className="space-y-4">
                 <h3 className="text-sm font-bold text-slate-500 dark:text-zinc-300 tracking-wider uppercase">
-                  Lista transakcji w tym miesiącu ({monthlyTransactions.length})
+                  List of transactions this month ({monthlyTransactions.length})
                 </h3>
 
                 {monthlyTransactions.length === 0 ? (
@@ -266,8 +266,8 @@ function DashboardContent() {
                       <Banknote className="w-6 h-6" />
                     </div>
                     <div>
-                      <p className="text-sm font-bold text-slate-600 dark:text-zinc-300">Brak zarejestrowanych operacji</p>
-                      <p className="text-xs text-slate-400 dark:text-zinc-400 mt-0.5">Kliknij w wybrany kafelek powyżej, aby dodać pierwszą transakcję</p>
+                      <p className="text-sm font-bold text-slate-600 dark:text-zinc-300">No operations registered</p>
+                      <p className="text-xs text-slate-400 dark:text-zinc-400 mt-0.5">Click on a tile above to add your first transaction</p>
                     </div>
                   </div>
                 ) : (
@@ -276,11 +276,11 @@ function DashboardContent() {
                       <table className="w-full text-left border-collapse">
                         <thead className="sticky top-0 z-10 bg-slate-50 dark:bg-zinc-800/95 backdrop-blur-sm">
                           <tr className="border-b border-slate-100 dark:border-zinc-800 text-[10px] font-bold text-slate-400 dark:text-zinc-400 uppercase tracking-wider">
-                            <th className="py-4 px-6">Kategoria</th>
-                            <th className="py-4 px-6">Data</th>
-                            <th className="py-4 px-6">Opis</th>
-                            <th className="py-4 px-6 text-right">Kwota</th>
-                            <th className="py-4 px-6 text-center w-20">Akcje</th>
+                            <th className="py-4 px-6">Category</th>
+                            <th className="py-4 px-6">Date</th>
+                            <th className="py-4 px-6">Description</th>
+                            <th className="py-4 px-6 text-right">Amount</th>
+                            <th className="py-4 px-6 text-center w-20">Actions</th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-50 dark:divide-none text-sm font-medium text-slate-700 dark:text-zinc-200">
@@ -300,7 +300,7 @@ function DashboardContent() {
                                       style={{ backgroundColor: preset?.text }}
                                     />
                                     <span className="font-bold text-slate-800 dark:text-white">
-                                      {cat ? cat.name : 'Nieznana'}
+                                      {cat ? cat.name : 'Unknown'}
                                     </span>
                                   </div>
                                 </td>
@@ -329,7 +329,7 @@ function DashboardContent() {
                                       deleteTransaction(tx.id);
                                     }}
                                     className="p-1.5 rounded-lg hover:bg-rose-50 text-slate-400 dark:text-zinc-400 hover:text-rose-600 transition-all cursor-pointer"
-                                    title="Usuń transakcję"
+                                    title="Delete transaction"
                                   >
                                     <Trash2 className="w-4 h-4" />
                                   </button>
@@ -370,14 +370,14 @@ function DashboardContent() {
       {isExitModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/20 dark:bg-black/50 backdrop-blur-sm">
           <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 w-full max-w-sm shadow-xl border border-slate-100 dark:border-zinc-800 animate-in fade-in zoom-in-95 duration-200">
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Wyjście z aplikacji</h3>
-            <p className="text-slate-500 dark:text-zinc-400 text-sm mb-6">Czy na pewno chcesz wyjść z aplikacji?</p>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Exit application</h3>
+            <p className="text-slate-500 dark:text-zinc-400 text-sm mb-6">Are you sure you want to exit the application?</p>
             <div className="flex justify-end gap-3">
               <button
                 onClick={() => setIsExitModalOpen(false)}
                 className="px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
               >
-                Anuluj
+                Cancel
               </button>
               <button
                 onClick={() => {
@@ -386,7 +386,7 @@ function DashboardContent() {
                 }}
                 className="px-4 py-2 rounded-xl text-sm font-semibold text-white bg-rose-500 hover:bg-rose-600 transition-colors cursor-pointer"
               >
-                Wyjdź
+                Exit
               </button>
             </div>
           </div>

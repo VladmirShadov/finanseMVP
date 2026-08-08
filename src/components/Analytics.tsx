@@ -40,7 +40,7 @@ export const Analytics: React.FC = () => {
   const getPolishMonthName = (ym: string) => {
     const [year, month] = ym.split('-');
     const date = new Date(Number(year), Number(month) - 1, 1);
-    const formatted = date.toLocaleDateString('pl-PL', { month: 'long', year: 'numeric' });
+    const formatted = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
     return formatted.charAt(0).toUpperCase() + formatted.slice(1);
   };
 
@@ -76,9 +76,9 @@ export const Analytics: React.FC = () => {
   // Bar Chart Data (Income vs Expenses)
   const barData = [
     {
-      name: 'Miesiąc',
-      'Przychody': totalIncome,
-      'Wydatki': totalExpenses,
+      name: 'Month',
+      'Income': totalIncome,
+      'Expenses': totalExpenses,
     }
   ];
 
@@ -91,7 +91,7 @@ export const Analytics: React.FC = () => {
           <p className="text-indigo-600 font-bold">{formatCurrency(payload[0].value)}</p>
           {payload[0].payload.percent && (
             <p className="text-[10px] text-slate-500 dark:text-zinc-300 font-medium mt-0.5">
-              Udział: {(payload[0].payload.percent * 100).toFixed(1)}%
+              Share: {(payload[0].payload.percent * 100).toFixed(1)}%
             </p>
           )}
         </div>
@@ -105,14 +105,14 @@ export const Analytics: React.FC = () => {
       {/* Month Selector header section */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
         <div>
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Analityka finansowa</h2>
-          <p className="text-xs text-slate-400 dark:text-zinc-400 mt-0.5">Automatyczne zestawienia i proporcje wydatków</p>
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Financial Analytics</h2>
+          <p className="text-xs text-slate-400 dark:text-zinc-400 mt-0.5">Automatic summaries and expense ratios</p>
         </div>
         <div className="flex items-center gap-2 bg-white dark:bg-zinc-900 p-1 rounded-xl border border-slate-200 dark:border-zinc-800 self-start sm:self-auto">
           <button
             onClick={prevMonth}
             className="p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-zinc-800/50 text-slate-600 dark:text-zinc-300 hover:text-slate-800 dark:text-white transition-all cursor-pointer"
-            title="Poprzedni miesiąc"
+            title="Previous month"
           >
             &larr;
           </button>
@@ -123,7 +123,7 @@ export const Analytics: React.FC = () => {
           <button
             onClick={nextMonth}
             className="p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-zinc-800/50 text-slate-600 dark:text-zinc-300 hover:text-slate-800 dark:text-white transition-all cursor-pointer"
-            title="Następny miesiąc"
+            title="Next month"
           >
             &rarr;
           </button>
@@ -136,7 +136,7 @@ export const Analytics: React.FC = () => {
         <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl border border-slate-200 dark:border-zinc-800 flex flex-col justify-between">
           <div className="flex justify-between items-start">
             <span className="text-[10px] font-bold tracking-wider text-slate-400 dark:text-zinc-400 uppercase">
-              Przychody ogółem
+              Total Income
             </span>
           </div>
           <p className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mt-3">
@@ -148,7 +148,7 @@ export const Analytics: React.FC = () => {
         <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl border border-slate-200 dark:border-zinc-800 flex flex-col justify-between">
           <div className="flex justify-between items-start">
             <span className="text-[10px] font-bold tracking-wider text-slate-400 dark:text-zinc-400 uppercase">
-              Wydatki ogółem
+              Total Expenses
             </span>
           </div>
           <p className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mt-3">
@@ -160,7 +160,7 @@ export const Analytics: React.FC = () => {
         <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl border border-slate-200 dark:border-zinc-800 flex flex-col justify-between">
           <div className="flex justify-between items-start">
             <span className="text-[10px] font-bold tracking-wider text-slate-400 dark:text-zinc-400 uppercase">
-              Bilans miesięczny
+              Monthly Balance
             </span>
           </div>
           <p className={`text-2xl font-bold tracking-tight mt-3 ${balance >= 0 ? 'text-emerald-600' : 'text-rose-500'}`}>
@@ -172,7 +172,7 @@ export const Analytics: React.FC = () => {
         <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl border border-slate-200 dark:border-zinc-800 flex flex-col justify-between">
           <div className="flex justify-between items-start">
             <span className="text-[10px] font-bold tracking-wider text-slate-400 dark:text-zinc-400 uppercase">
-              Suma zasobów
+              Total Assets
             </span>
           </div>
           <p className="text-2xl font-bold text-indigo-600 tracking-tight mt-3">
@@ -187,8 +187,8 @@ export const Analytics: React.FC = () => {
         <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl border border-slate-200 dark:border-zinc-800 flex flex-col justify-between">
           <div className="mb-4 flex items-center justify-between">
             <div>
-              <h3 className="font-bold text-slate-800 dark:text-white tracking-tight text-sm uppercase">Struktura {chartView === 'expense' ? 'wydatków' : 'przychodów'}</h3>
-              <p className="text-xs text-slate-400 dark:text-zinc-400 mt-0.5">Podział procentowy według kategorii</p>
+              <h3 className="font-bold text-slate-800 dark:text-white tracking-tight text-sm uppercase">Structure of {chartView === 'expense' ? 'expenses' : 'income'}</h3>
+              <p className="text-xs text-slate-400 dark:text-zinc-400 mt-0.5">Percentage breakdown by category</p>
             </div>
             
             <div className="flex bg-slate-100 dark:bg-zinc-800 dark:bg-slate-700 p-1 rounded-lg">
@@ -200,7 +200,7 @@ export const Analytics: React.FC = () => {
                     : 'text-slate-500 dark:text-zinc-300 hover:text-slate-700 dark:text-zinc-200'
                 }`}
               >
-                Wydatki
+                Expenses
               </button>
               <button
                 onClick={() => setChartView('income')}
@@ -210,7 +210,7 @@ export const Analytics: React.FC = () => {
                     : 'text-slate-500 dark:text-zinc-300 hover:text-slate-700 dark:text-zinc-200'
                 }`}
               >
-                Przychody
+                Income
               </button>
             </div>
           </div>
@@ -223,7 +223,7 @@ export const Analytics: React.FC = () => {
                 <TrendingUp className="w-8 h-8 text-slate-300 dark:text-slate-600 dark:text-zinc-300 mb-2" />
               )}
               <p className="text-xs font-semibold text-slate-500 dark:text-zinc-300">
-                Brak zarejestrowanych {chartView === 'expense' ? 'wydatków' : 'przychodów'}
+                No recorded {chartView === 'expense' ? 'expenses' : 'income'}
               </p>
             </div>
           ) : (
@@ -277,14 +277,14 @@ export const Analytics: React.FC = () => {
         {/* BarChart */}
         <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl border border-slate-200 dark:border-zinc-800 flex flex-col justify-between">
           <div className="mb-4">
-            <h3 className="font-bold text-slate-800 dark:text-white tracking-tight text-sm uppercase">Porównanie budżetu</h3>
-            <p className="text-xs text-slate-400 dark:text-zinc-400 mt-0.5">Zestawienie przychodów i wydatków</p>
+            <h3 className="font-bold text-slate-800 dark:text-white tracking-tight text-sm uppercase">Budget Comparison</h3>
+            <p className="text-xs text-slate-400 dark:text-zinc-400 mt-0.5">Income and expenses overview</p>
           </div>
 
           {totalIncome === 0 && totalExpenses === 0 ? (
             <div className="h-64 flex flex-col items-center justify-center text-center p-6 bg-slate-50/50 rounded-xl border border-dashed border-slate-200 dark:border-zinc-800">
               <TrendingUp className="w-8 h-8 text-slate-300 dark:text-slate-600 dark:text-zinc-300 mb-2" />
-              <p className="text-xs font-semibold text-slate-500 dark:text-zinc-300">Brak danych do porównania</p>
+              <p className="text-xs font-semibold text-slate-500 dark:text-zinc-300">No data for comparison</p>
             </div>
           ) : (
             <div className="w-full h-56">
@@ -313,7 +313,7 @@ export const Analytics: React.FC = () => {
                       if (active && payload && payload.length) {
                         return (
                           <div className="bg-white dark:bg-zinc-900 p-3 rounded-xl shadow-md border border-slate-200 dark:border-zinc-800 space-y-1 text-xs font-semibold">
-                            <p className="text-slate-800 dark:text-white font-bold border-b border-slate-100 dark:border-zinc-800 pb-1">Miesięczne Zestawienie</p>
+                            <p className="text-slate-800 dark:text-white font-bold border-b border-slate-100 dark:border-zinc-800 pb-1">Monthly Summary</p>
                             {payload.map((p, idx) => (
                               <div key={idx} className="flex items-center gap-4 justify-between">
                                 <span className="flex items-center gap-1.5 text-slate-500 dark:text-zinc-300">
@@ -334,8 +334,8 @@ export const Analytics: React.FC = () => {
                     iconSize={8}
                     wrapperStyle={{ paddingTop: '10px', fontSize: '11px', fontWeight: 500 }}
                   />
-                  <Bar dataKey="Przychody" fill="#10B981" radius={[4, 4, 0, 0]} maxBarSize={45} />
-                  <Bar dataKey="Wydatki" fill="#EF4444" radius={[4, 4, 0, 0]} maxBarSize={45} />
+                  <Bar dataKey="Income" fill="#10B981" radius={[4, 4, 0, 0]} maxBarSize={45} />
+                  <Bar dataKey="Expenses" fill="#EF4444" radius={[4, 4, 0, 0]} maxBarSize={45} />
                 </BarChart>
               </ResponsiveContainer>
             </div>

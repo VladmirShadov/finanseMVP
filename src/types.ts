@@ -33,7 +33,7 @@ export interface ColorPreset {
 export const COLOR_PRESETS: ColorPreset[] = [
   {
     id: 'blue',
-    name: 'Błękitny',
+    name: 'Light Blue',
     bg: '#E0F2FE',
     text: '#0369A1',
     border: '#BAE6FD',
@@ -41,7 +41,7 @@ export const COLOR_PRESETS: ColorPreset[] = [
   },
   {
     id: 'emerald',
-    name: 'Szmaragdowy',
+    name: 'Emerald',
     bg: '#D1FAE5',
     text: '#047857',
     border: '#A7F3D0',
@@ -49,7 +49,7 @@ export const COLOR_PRESETS: ColorPreset[] = [
   },
   {
     id: 'violet',
-    name: 'Fioletowy',
+    name: 'Violet',
     bg: '#EDE9FE',
     text: '#6D28D9',
     border: '#DDD6FE',
@@ -57,7 +57,7 @@ export const COLOR_PRESETS: ColorPreset[] = [
   },
   {
     id: 'amber',
-    name: 'Bursztynowy',
+    name: 'Amber',
     bg: '#FEF3C7',
     text: '#B45309',
     border: '#FDE68A',
@@ -65,7 +65,7 @@ export const COLOR_PRESETS: ColorPreset[] = [
   },
   {
     id: 'rose',
-    name: 'Różany',
+    name: 'Rose',
     bg: '#FFE4E6',
     text: '#BE123C',
     border: '#FECDD3',
@@ -73,7 +73,7 @@ export const COLOR_PRESETS: ColorPreset[] = [
   },
   {
     id: 'teal',
-    name: 'Turkusowy',
+    name: 'Teal',
     bg: '#CCFBF1',
     text: '#0F766E',
     border: '#99F6E4',
@@ -81,7 +81,7 @@ export const COLOR_PRESETS: ColorPreset[] = [
   },
   {
     id: 'pink',
-    name: 'Różowy',
+    name: 'Pink',
     bg: '#FCE7F3',
     text: '#BE185D',
     border: '#FBCFE8',
@@ -89,7 +89,7 @@ export const COLOR_PRESETS: ColorPreset[] = [
   },
   {
     id: 'indigo',
-    name: 'Indygo',
+    name: 'Indigo',
     bg: '#E0E7FF',
     text: '#4338CA',
     border: '#C7D2FE',
@@ -97,7 +97,7 @@ export const COLOR_PRESETS: ColorPreset[] = [
   },
   {
     id: 'cyan',
-    name: 'Cyjan',
+    name: 'Cyan',
     bg: '#CFFAFE',
     text: '#0E7490',
     border: '#A5F3FC',
@@ -105,7 +105,7 @@ export const COLOR_PRESETS: ColorPreset[] = [
   },
   {
     id: 'orange',
-    name: 'Pomarańczowy',
+    name: 'Orange',
     bg: '#FFEDD5',
     text: '#C2410C',
     border: '#FED7AA',

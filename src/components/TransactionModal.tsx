@@ -51,7 +51,7 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
     e.preventDefault();
     const parsedAmount = parseFloat(amount);
     if (isNaN(parsedAmount) || parsedAmount < 0) {
-      alert('Wprowadź poprawną kwotę.');
+      alert('Please enter a valid amount.');
       return;
     }
 
@@ -59,7 +59,7 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
       onSubmit({ amount: parsedAmount });
     } else {
       if (!date) {
-        alert('Proszę wybrać datę.');
+        alert('Please select a date.');
         return;
       }
       onSubmit({
@@ -86,7 +86,7 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
         >
           <div>
             <span className="text-[10px] font-bold tracking-wider uppercase opacity-80">
-              {category.type === 'income' ? 'Dodaj Przychód' : category.type === 'expense' ? 'Dodaj Wydatek' : 'Aktualizacja Zasobu'}
+              {category.type === 'income' ? 'Add Income' : category.type === 'expense' ? 'Add Expense' : 'Update Asset'}
             </span>
             <h2 className="text-xl font-bold tracking-tight mt-0.5">{category.name}</h2>
           </div>
@@ -104,7 +104,7 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
           <div className="space-y-1.5">
             <label className="text-xs font-semibold text-slate-500 dark:text-zinc-300 flex items-center gap-1.5">
               <DollarSign className="w-3.5 h-3.5 text-slate-400 dark:text-zinc-400" />
-              {isAsset ? 'Nowa wartość zasobu' : 'Kwota'}
+              {isAsset ? 'New asset value' : 'Amount'}
             </label>
             <div className="relative">
               <input
@@ -130,7 +130,7 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-slate-500 dark:text-zinc-300 flex items-center gap-1.5">
                   <Calendar className="w-3.5 h-3.5 text-slate-400 dark:text-zinc-400" />
-                  Data transakcji
+                  Transaction Date
                 </label>
                 <input
                   type="date"
@@ -145,11 +145,11 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-slate-500 dark:text-zinc-300 flex items-center gap-1.5">
                   <FileText className="w-3.5 h-3.5 text-slate-400 dark:text-zinc-400" />
-                  Opis (opcjonalny)
+                  Description (optional)
                 </label>
                 <input
                   type="text"
-                  placeholder="np. Zakupy, premia za projekt"
+                  placeholder="e.g. Groceries, project bonus"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   className="w-full px-4 py-3 bg-slate-50 dark:bg-zinc-800/50 border border-slate-200 dark:border-zinc-800 rounded-xl text-sm font-medium text-slate-700 dark:text-zinc-200 focus:outline-hidden focus:border-indigo-500 focus:bg-white dark:focus:bg-zinc-800 transition-all"
@@ -165,14 +165,14 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
               onClick={onClose}
               className="flex-1 py-3 px-4 border border-slate-200 dark:border-zinc-800 rounded-xl text-sm font-semibold text-slate-600 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-all cursor-pointer"
             >
-              Anuluj
+              Cancel
             </button>
             <button
               type="submit"
               className="flex-1 py-3 px-4 rounded-xl text-sm font-bold text-white shadow-md transition-all hover:opacity-90 active:scale-98 cursor-pointer"
               style={{ backgroundColor: colorPreset.text }}
             >
-              {isAsset ? 'Uaktualnij' : 'Zapisz'}
+              {isAsset ? 'Update' : 'Save'}
             </button>
           </div>
         </form>
