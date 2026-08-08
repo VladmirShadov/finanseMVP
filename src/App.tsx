@@ -242,7 +242,7 @@ function DashboardContent() {
                   onClick={() => setIsCatModalOpen(true)}
                   className="group flex flex-col items-center justify-center p-6 min-h-44 bg-slate-50 dark:bg-zinc-900/50 hover:bg-slate-100/70 dark:hover:bg-zinc-900 dark:hover:border-zinc-700 border-2 border-dashed border-slate-200 dark:border-zinc-800 hover:border-slate-300 rounded-2xl transition-all duration-300 cursor-pointer text-center space-y-3"
                 >
-                  <div className="p-3 bg-white dark:bg-zinc-900 text-slate-400 dark:text-zinc-400 group-hover:text-indigo-600 rounded-xl shadow-xs group-hover:shadow-md group-hover:scale-105 transition-all">
+                  <div className="p-3 bg-white dark:bg-zinc-900 text-slate-400 dark:text-zinc-400 group-hover:text-indigo-600 group-hover:bg-transparent rounded-xl shadow-sm dark:shadow-none group-hover:shadow-none group-hover:scale-105 transition-all">
                     <Plus className="w-5 h-5" />
                   </div>
                   <div>
