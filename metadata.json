@@ -1,0 +1,6 @@
+{
+  "name": "Zarządzanie Finansami Osobistymi",
+  "description": "MVP aplikacji do zarządzania finansami osobistymi z analizą przychodów, wydatków i zasobów.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

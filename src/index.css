@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-primary: #6366f1;
+  --color-brand-primary-hover: #4f46e5;
+  --color-brand-bg: #f8fafc;
+  --color-brand-border: #e2e8f0;
+  --color-brand-text-main: #0f172a;
+  --color-brand-text-muted: #64748b;
+  --color-brand-income: #10b981;
+  --color-brand-expense: #ef4444;
+  --color-brand-asset: #3b82f6;
+  
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--color-brand-bg);
+  color: var(--color-brand-text-main);
+  font-family: var(--font-sans);
+  margin: 0;
+}
+
+html.dark body {
+  --color-brand-bg: #000000;
+  --color-brand-text-main: #ffffff;
+  --color-brand-text-muted: #a1a1aa;
+  --color-brand-border: #27272a;
+}
