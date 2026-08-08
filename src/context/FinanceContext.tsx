@@ -22,29 +22,29 @@ const FinanceContext = createContext<FinanceContextType | undefined>(undefined);
 
 // Initial default categories
 const DEFAULT_CATEGORIES: Category[] = [
-  // Expenses (Wydatki)
-  { id: 'cat-rent', name: 'Czynsz', type: 'expense', colorId: 'violet', isCustom: false },
-  { id: 'cat-food', name: 'Jedzenie', type: 'expense', colorId: 'amber', isCustom: false },
-  { id: 'cat-fun', name: 'Rozrywka', type: 'expense', colorId: 'rose', isCustom: false },
+  // Expenses
+  { id: 'cat-rent', name: 'Rent', type: 'expense', colorId: 'violet', isCustom: false },
+  { id: 'cat-food', name: 'Food', type: 'expense', colorId: 'amber', isCustom: false },
+  { id: 'cat-fun', name: 'Entertainment', type: 'expense', colorId: 'rose', isCustom: false },
   
-  // Income (Przychody)
-  { id: 'cat-salary', name: 'Pensja', type: 'income', colorId: 'emerald', isCustom: false },
-  { id: 'cat-bonus', name: 'Premia', type: 'income', colorId: 'teal', isCustom: false },
+  // Income
+  { id: 'cat-salary', name: 'Salary', type: 'income', colorId: 'emerald', isCustom: false },
+  { id: 'cat-bonus', name: 'Bonus', type: 'income', colorId: 'teal', isCustom: false },
   
-  // Assets (Zasoby)
-  { id: 'cat-home', name: 'Dom', type: 'asset', colorId: 'blue', isCustom: false },
-  { id: 'cat-car', name: 'Samochód', type: 'asset', colorId: 'violet', isCustom: false },
-  { id: 'cat-savings', name: 'Oszczędności', type: 'asset', colorId: 'emerald', isCustom: false },
+  // Assets
+  { id: 'cat-home', name: 'Home', type: 'asset', colorId: 'blue', isCustom: false },
+  { id: 'cat-car', name: 'Car', type: 'asset', colorId: 'violet', isCustom: false },
+  { id: 'cat-savings', name: 'Savings', type: 'asset', colorId: 'emerald', isCustom: false },
 ];
 
 // Initial default transactions for a polished first load experience
 const DEFAULT_TRANSACTIONS: Transaction[] = [
-  { id: 't-1', categoryId: 'cat-salary', amount: 8500, date: '2026-07-10', type: 'income', description: 'Wynagrodzenie podstawowe' },
-  { id: 't-2', categoryId: 'cat-bonus', amount: 1500, date: '2026-07-11', type: 'income', description: 'Premia kwartalna' },
-  { id: 't-3', categoryId: 'cat-rent', amount: 2800, date: '2026-07-01', type: 'expense', description: 'Czynsz za mieszkanie lipiec' },
-  { id: 't-4', categoryId: 'cat-food', amount: 650, date: '2026-07-05', type: 'expense', description: 'Zakupy spożywcze tydzień 1' },
-  { id: 't-5', categoryId: 'cat-fun', amount: 240, date: '2026-07-08', type: 'expense', description: 'Kino i restauracja' },
-  { id: 't-6', categoryId: 'cat-food', amount: 350, date: '2026-07-11', type: 'expense', description: 'Kolacja ze znajomymi' },
+  { id: 't-1', categoryId: 'cat-salary', amount: 8500, date: '2026-07-10', type: 'income', description: 'Base Salary' },
+  { id: 't-2', categoryId: 'cat-bonus', amount: 1500, date: '2026-07-11', type: 'income', description: 'Quarterly Bonus' },
+  { id: 't-3', categoryId: 'cat-rent', amount: 2800, date: '2026-07-01', type: 'expense', description: 'Rent for July' },
+  { id: 't-4', categoryId: 'cat-food', amount: 650, date: '2026-07-05', type: 'expense', description: 'Groceries week 1' },
+  { id: 't-5', categoryId: 'cat-fun', amount: 240, date: '2026-07-08', type: 'expense', description: 'Cinema and restaurant' },
+  { id: 't-6', categoryId: 'cat-food', amount: 350, date: '2026-07-11', type: 'expense', description: 'Dinner with friends' },
 ];
 
 const DEFAULT_ASSETS_VALUES: AssetsValues = {

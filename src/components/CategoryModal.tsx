@@ -32,7 +32,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim()) {
-      alert('Wprowadź nazwę kategorii.');
+      alert('Please enter a category name.');
       return;
     }
     onSubmit(name.trim(), selectedColorId);
@@ -40,9 +40,9 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({
   };
 
   const typeLabels = {
-    income: 'Przychód',
-    expense: 'Wydatek',
-    asset: 'Zasób',
+    income: 'Income',
+    expense: 'Expense',
+    asset: 'Asset',
   };
 
   return (
@@ -55,10 +55,10 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({
         <div className="p-5 flex justify-between items-center border-b border-slate-50 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900">
           <div>
             <span className="text-[10px] font-bold tracking-wider uppercase text-slate-400 dark:text-zinc-400">
-              Nowa Kategoria
+              New Category
             </span>
             <h2 className="text-lg font-bold tracking-tight text-slate-800 dark:text-white">
-              Dodaj {typeLabels[type]}
+              Add {typeLabels[type]}
             </h2>
           </div>
           <button 
@@ -75,12 +75,12 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({
           <div className="space-y-1.5">
             <label className="text-xs font-semibold text-slate-500 dark:text-zinc-300 flex items-center gap-1.5">
               <Tag className="w-3.5 h-3.5 text-slate-400 dark:text-zinc-400" />
-              Nazwa kategorii
+              Category Name
             </label>
             <input
               type="text"
               required
-              placeholder="np. Kawiarnie, Transport, Abonamenty"
+              placeholder="e.g. Coffee, Transport, Subscriptions"
               value={name}
               onChange={(e) => setName(e.target.value)}
               autoFocus
@@ -91,7 +91,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({
           {/* Color Palette Selector */}
           <div>
             <label className="block mb-3 text-xs font-semibold text-slate-500 dark:text-zinc-300">
-              Wybierz pastelowy kolor kafelka
+              Select a pastel color
             </label>
             <div className="grid grid-cols-5 gap-3">
               {COLOR_PRESETS.map((preset) => {
@@ -125,13 +125,13 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({
               onClick={onClose}
               className="flex-1 py-3 px-4 border border-slate-200 dark:border-zinc-800 rounded-xl text-sm font-semibold text-slate-600 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-all cursor-pointer"
             >
-              Anuluj
+              Cancel
             </button>
             <button
               type="submit"
               className="flex-1 py-3 px-4 rounded-xl text-sm font-bold text-white shadow-md bg-indigo-600 hover:bg-indigo-700 transition-all active:scale-98 cursor-pointer"
             >
-              Stwórz kategorię
+              Create category
             </button>
           </div>
         </form>

@@ -11,7 +11,7 @@ interface CategoryCardProps {
 }
 
 export const formatCurrency = (amount: number): string => {
-  return new Intl.NumberFormat('pl-PL', {
+  return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'PLN',
     minimumFractionDigits: 2,
@@ -33,15 +33,15 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
   // Map category types to specific Polish names and styles
   const typeBadgeStyles = {
     income: {
-      label: 'Przychód',
+      label: 'Income',
       bg: 'bg-emerald-50 text-emerald-700 border-emerald-100',
     },
     expense: {
-      label: 'Wydatek',
+      label: 'Expense',
       bg: 'bg-rose-50 text-rose-700 border-rose-100',
     },
     asset: {
-      label: 'Zasób',
+      label: 'Asset',
       bg: 'bg-blue-50 text-blue-700 border-blue-100',
     },
   };
@@ -71,7 +71,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
               onDelete();
             }}
             className="p-1.5 rounded-lg transition-colors duration-150 text-slate-400 hover:text-red-600 hover:bg-red-50 cursor-pointer"
-            title="Usuń kategorię"
+            title="Delete category"
           >
             <Trash2 className="w-3.5 h-3.5" />
           </button>
@@ -92,8 +92,8 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
 
       {/* Footer Info Label */}
       <div className="mt-3 pt-2.5 flex items-center justify-between text-[10px] text-slate-400 font-medium uppercase tracking-wider">
-        <span>{category.type === 'asset' ? 'Wartość' : 'W tym miesiącu'}</span>
-        {category.isCustom && <span className="text-indigo-500 font-semibold normal-case">Własny</span>}
+        <span>{category.type === 'asset' ? 'Value' : 'This month'}</span>
+        {category.isCustom && <span className="text-indigo-500 font-semibold normal-case">Custom</span>}
       </div>
     </div>
   );
