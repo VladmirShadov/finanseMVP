@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef, useCallback } from 'react';
 import { Category, Transaction, AssetsValues, COLOR_PRESETS } from '../types';
 
 interface FinanceContextType {
@@ -70,8 +70,21 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     return saved ? JSON.parse(saved) : DEFAULT_ASSETS_VALUES;
   });
 
-  // Current selected month, default to 2026-07
-  const [currentYearMonth, setCurrentYearMonth] = useState<string>('2026-07');
+  // Current selected month, default to actual current month if not saved in session
+  const [currentYearMonth, setCurrentYearMonth] = useState<string>(() => {
+    const saved = sessionStorage.getItem('fin_current_month');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return saved;
+      }
+    }
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    return `${year}-${month}`;
+  });
 
   // Save states to localStorage when they change
   useEffect(() => {
@@ -86,34 +99,50 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     localStorage.setItem('fin_assets_values', JSON.stringify(assetsValues));
   }, [assetsValues]);
 
+  useEffect(() => {
+    sessionStorage.setItem('fin_current_month', JSON.stringify(currentYearMonth));
+  }, [currentYearMonth]);
+
   // Month navigation helpers
-  const setYearMonth = (ym: string) => {
+  const setYearMonth = useCallback((ym: string) => {
     setCurrentYearMonth(ym);
-  };
+  }, []);
 
-  const nextMonth = () => {
-    const [year, month] = currentYearMonth.split('-').map(Number);
-    let newYear = year;
-    let newMonth = month + 1;
-    if (newMonth > 12) {
-      newMonth = 1;
-      newYear += 1;
-    }
-    const monthStr = newMonth.toString().padStart(2, '0');
-    setCurrentYearMonth(`${newYear}-${monthStr}`);
-  };
+  const lastMonthChange = useRef<number>(0);
 
-  const prevMonth = () => {
-    const [year, month] = currentYearMonth.split('-').map(Number);
-    let newYear = year;
-    let newMonth = month - 1;
-    if (newMonth < 1) {
-      newMonth = 12;
-      newYear -= 1;
-    }
-    const monthStr = newMonth.toString().padStart(2, '0');
-    setCurrentYearMonth(`${newYear}-${monthStr}`);
-  };
+  const nextMonth = useCallback(() => {
+    const now = Date.now();
+    if (now - lastMonthChange.current < 200) return;
+    lastMonthChange.current = now;
+
+    setCurrentYearMonth((prev) => {
+      const [year, month] = prev.split('-').map(Number);
+      let newYear = year;
+      let newMonth = month + 1;
+      if (newMonth > 12) {
+        newMonth = 1;
+        newYear += 1;
+      }
+      return `${newYear}-${newMonth.toString().padStart(2, '0')}`;
+    });
+  }, []);
+
+  const prevMonth = useCallback(() => {
+    const now = Date.now();
+    if (now - lastMonthChange.current < 200) return;
+    lastMonthChange.current = now;
+
+    setCurrentYearMonth((prev) => {
+      const [year, month] = prev.split('-').map(Number);
+      let newYear = year;
+      let newMonth = month - 1;
+      if (newMonth < 1) {
+        newMonth = 12;
+        newYear -= 1;
+      }
+      return `${newYear}-${newMonth.toString().padStart(2, '0')}`;
+    });
+  }, []);
 
   // Categories operations
   const addCategory = (name: string, type: 'income' | 'expense' | 'asset', colorId: string) => {
