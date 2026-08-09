@@ -116,7 +116,7 @@ export const Analytics: React.FC = () => {
           >
             &larr;
           </button>
-          <span className="px-3 text-xs font-bold text-slate-700 dark:text-zinc-200 dark:text-zinc-100 min-w-32 text-center select-none flex items-center justify-center gap-2">
+          <span className="px-3 text-xs font-bold text-slate-700 dark:text-zinc-200 dark:text-zinc-100 w-40 text-center select-none flex items-center justify-center gap-2 whitespace-nowrap">
             <CalendarDays className="w-4 h-4 text-slate-400 dark:text-zinc-400 shrink-0" />
             {getPolishMonthName(currentYearMonth)}
           </span>

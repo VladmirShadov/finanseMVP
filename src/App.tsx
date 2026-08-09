@@ -153,7 +153,7 @@ function DashboardContent() {
                   >
                     &larr;
                   </button>
-                  <span className="px-4 text-sm font-bold text-slate-700 dark:text-zinc-200 min-w-36 text-center select-none flex items-center justify-center gap-2">
+                  <span className="px-4 text-sm font-bold text-slate-700 dark:text-zinc-200 w-44 text-center select-none flex items-center justify-center gap-2 whitespace-nowrap">
                     <CalendarDays className="w-4 h-4 text-slate-400 dark:text-zinc-400 shrink-0" />
                     {getPolishMonthName(currentYearMonth)}
                   </span>
