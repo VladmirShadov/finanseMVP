@@ -6,8 +6,7 @@ import {
   PieChart as ChartIcon,
   DollarSign,
   Sun,
-  Moon,
-  LogOut
+  Moon
 } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 
@@ -16,10 +15,9 @@ export type ViewType = 'income' | 'expense' | 'asset' | 'analytics';
 interface SidebarProps {
   currentView: ViewType;
   onViewChange: (view: ViewType) => void;
-  onExit?: () => void;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onExit }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange }) => {
   const { isDark, toggle } = useTheme();
 
   const menuItems = [
@@ -95,15 +93,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onE
           );
         })}
 
-        <div className="md:mt-auto pt-4 border-t border-slate-100 dark:border-zinc-800 md:w-full mt-0 md:pt-4">
-          <button
-            onClick={onExit}
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-150 cursor-pointer whitespace-nowrap border-0 text-slate-500 dark:text-zinc-400 hover:bg-slate-50 dark:hover:bg-zinc-800/50 hover:text-slate-800 dark:hover:text-zinc-200"
-          >
-            <LogOut className="w-4.5 h-4.5 shrink-0 text-slate-400 dark:text-zinc-400" />
-            <span>Exit</span>
-          </button>
-        </div>
       </nav>
     </aside>
   );
