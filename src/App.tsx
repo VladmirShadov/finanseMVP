@@ -26,8 +26,6 @@ function DashboardContent() {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
 
   const [isCatModalOpen, setIsCatModalOpen] = useState(false);
-  const [isExitModalOpen, setIsExitModalOpen] = useState(false);
-  const [isExited, setIsExited] = useState(false);
 
   const {
     categories,
@@ -95,28 +93,12 @@ function DashboardContent() {
     return formatted.charAt(0).toUpperCase() + formatted.slice(1);
   };
 
-  if (isExited) {
-    return (
-      <div className="min-h-screen bg-slate-50 dark:bg-black flex flex-col items-center justify-center p-4">
-        <h1 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">Logged out successfully</h1>
-        <p className="text-slate-500 dark:text-zinc-400 mb-6">Application has been closed.</p>
-        <button
-          onClick={() => setIsExited(false)}
-          className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-colors cursor-pointer"
-        >
-          Return to application
-        </button>
-      </div>
-    );
-  }
-
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-slate-50/50 dark:bg-black font-sans">
       {/* Sidebar Navigation */}
       <Sidebar 
         currentView={currentView} 
         onViewChange={setCurrentView} 
-        onExit={() => setIsExitModalOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -365,33 +347,6 @@ function DashboardContent() {
         type={currentView === 'asset' ? 'asset' : currentView === 'income' ? 'income' : 'expense'}
         onSubmit={handleCatSubmit}
       />
-
-      {/* Exit Modal */}
-      {isExitModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/20 dark:bg-black/50 backdrop-blur-sm">
-          <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 w-full max-w-sm shadow-xl border border-slate-100 dark:border-zinc-800 animate-in fade-in zoom-in-95 duration-200">
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Exit application</h3>
-            <p className="text-slate-500 dark:text-zinc-400 text-sm mb-6">Are you sure you want to exit the application?</p>
-            <div className="flex justify-end gap-3">
-              <button
-                onClick={() => setIsExitModalOpen(false)}
-                className="px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => {
-                  setIsExitModalOpen(false);
-                  setIsExited(true);
-                }}
-                className="px-4 py-2 rounded-xl text-sm font-semibold text-white bg-rose-500 hover:bg-rose-600 transition-colors cursor-pointer"
-              >
-                Exit
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
